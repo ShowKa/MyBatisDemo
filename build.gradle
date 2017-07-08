@@ -31,4 +31,10 @@ dependencies {
 
 	// lombok
 	compile 'org.projectlombok:lombok:1.16.8'
+
+	// test
+	testCompile group: 'org.jmockit', name: 'jmockit', version: '1.27'	
+	testCompile('com.ninja-squad:DbSetup:2.0.0')
+	testCompile group: 'org.dbunit', name: 'dbunit', version: '2.4.3'
+	
 }
