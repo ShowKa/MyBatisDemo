@@ -7,7 +7,7 @@ import com.showka.MyBatisDemo.entity.Todo;
 @Mapper
 public interface TodoMapper {
 
-    void insert(Todo todo);
+	void insert(Todo todo);
 
-    Todo select(int id);
+	Todo select(String id);
 }

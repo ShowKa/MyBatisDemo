@@ -7,6 +7,6 @@
         INSERT INTO todo (title, details, finished) VALUES (#{title}, #{details}, #{finished})
     </insert>
     <select id="select" resultType="com.showka.MyBatisDemo.entity.Todo">
-        SELECT id, title, details, finished FROM todo WHERE id = #{id}
+        SELECT title, details, finished FROM todo WHERE title = #{id}
     </select>
 </mapper>

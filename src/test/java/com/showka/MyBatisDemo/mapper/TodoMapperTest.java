@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.showka.MyBatisDemo.common.TestCaseBase;
 import com.showka.MyBatisDemo.entity.Todo;
-import com.showka.MyBatisDemo.mapper.TodoMapper;
 
 public class TodoMapperTest extends TestCaseBase {
 
@@ -17,9 +16,11 @@ public class TodoMapperTest extends TestCaseBase {
 		Todo newTodo = new Todo();
 		newTodo.setTitle("飲み会");
 		newTodo.setDetails("銀座 19:00");
+		newTodo.setFinished(false);
 		todoMapper.insert(newTodo);
 
-		Todo result = todoMapper.select(newTodo.getId());
+		Todo result = todoMapper.select(newTodo.getTitle());
+		System.out.println(result.getVersion());
 		assertEquals(newTodo.getTitle(), result.getTitle());
 	}
 
