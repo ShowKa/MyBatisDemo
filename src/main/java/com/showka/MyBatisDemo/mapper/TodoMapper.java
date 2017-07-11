@@ -9,5 +9,5 @@ public interface TodoMapper {
 
 	void insert(Todo todo);
 
-	Todo select(String id);
+	Todo select(String title);
 }

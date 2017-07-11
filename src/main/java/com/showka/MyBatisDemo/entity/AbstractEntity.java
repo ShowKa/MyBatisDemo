@@ -30,22 +30,10 @@ public abstract class AbstractEntity {
 	private Integer version;
 
 	/**
-	 * id
-	 */
-	@Column(name = "record_id", unique = true, nullable = false, length = 255)
-	private String recordId;
-
-	/**
 	 * create_user_id
 	 */
 	@Column(name = "create_user_id", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
 	private String create_user_id;
-
-	/**
-	 * create_function
-	 */
-	@Column(name = "create_function", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
-	private String create_function;
 
 	/**
 	 * create_timestamp
@@ -59,12 +47,6 @@ public abstract class AbstractEntity {
 	 */
 	@Column(name = "update_user_id", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
 	private String update_user_id;
-
-	/**
-	 * update_function
-	 */
-	@Column(name = "update_function", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
-	private String update_function;
 
 	/**
 	 * update_timestamp

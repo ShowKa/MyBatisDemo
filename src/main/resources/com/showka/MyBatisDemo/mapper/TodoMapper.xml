@@ -3,10 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.showka.MyBatisDemo.mapper.TodoMapper">
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO todo (title, details, finished) VALUES (#{title}, #{details}, #{finished})
-    </insert>
-    <select id="select" resultType="com.showka.MyBatisDemo.entity.Todo">
-        SELECT title, details, finished FROM todo WHERE title = #{id}
-    </select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="title">
+		INSERT
+		INTO todo (title, details, finished) VALUES
+		(#{title}, #{details},
+		#{finished})
+	</insert>
+
+	<select id="select" resultMap="todo">
+		SELECT *
+		FROM todo WHERE title =
+		#{title}
+	</select>
+
+	<resultMap type="com.showka.MyBatisDemo.entity.Todo" id="todo"
+		extends="base">
+	</resultMap>
+
+	<resultMap type="com.showka.MyBatisDemo.entity.AbstractEntity"
+		id="base">
+		<result property="create_user_id" column="create_user_id" />
+		<result property="create_timestamp" column="create_timestamp" />
+		<result property="update_user_id" column="update_user_id" />
+		<result property="update_timestamp" column="update_timestamp" />
+		<result property="version" column="version" />
+	</resultMap>
 </mapper>

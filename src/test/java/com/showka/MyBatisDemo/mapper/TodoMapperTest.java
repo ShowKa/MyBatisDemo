@@ -14,13 +14,12 @@ public class TodoMapperTest extends TestCaseBase {
 	@Test
 	public void test_01() {
 		Todo newTodo = new Todo();
-		newTodo.setTitle("飲み会");
+		newTodo.setTitle("友人との飲み会!");
 		newTodo.setDetails("銀座 19:00");
 		newTodo.setFinished(false);
 		todoMapper.insert(newTodo);
 
 		Todo result = todoMapper.select(newTodo.getTitle());
-		System.out.println(result.getVersion());
 		assertEquals(newTodo.getTitle(), result.getTitle());
 	}
 
