@@ -11,22 +11,10 @@
 		#{finished})
 	</insert>
 
-	<select id="select" resultMap="todo">
+	<select id="select" resultMap="com.showka.MyBatisDemo.mapper.EntityMapper.todo">
 		SELECT *
 		FROM todo WHERE title =
 		#{title}
 	</select>
 
-	<resultMap type="com.showka.MyBatisDemo.entity.Todo" id="todo"
-		extends="base">
-	</resultMap>
-
-	<resultMap type="com.showka.MyBatisDemo.entity.AbstractEntity"
-		id="base">
-		<result property="create_user_id" column="create_user_id" />
-		<result property="create_timestamp" column="create_timestamp" />
-		<result property="update_user_id" column="update_user_id" />
-		<result property="update_timestamp" column="update_timestamp" />
-		<result property="version" column="version" />
-	</resultMap>
 </mapper>
