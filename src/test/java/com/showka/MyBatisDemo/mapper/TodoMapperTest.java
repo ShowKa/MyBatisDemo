@@ -19,7 +19,13 @@ public class TodoMapperTest extends TestCaseBase {
 		newTodo.setFinished(false);
 		todoMapper.insert(newTodo);
 
+		newTodo.setDetails("銀座 20:00");
+		newTodo.setVersion(1);
+		boolean updated = todoMapper.update(newTodo);
+		System.out.println(updated);
+
 		Todo result = todoMapper.select(newTodo.getTitle());
+		System.out.println(result);
 		assertEquals(newTodo.getTitle(), result.getTitle());
 	}
 

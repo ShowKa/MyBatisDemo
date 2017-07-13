@@ -4,12 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.showka.MyBatisDemo.mapper.TodoMapper">
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="title">
+	<insert id="insert" useGeneratedKeys="false" keyProperty="title">
 		INSERT
-		INTO todo (title, details, finished) VALUES
+		INTO todo
+		(title, details, finished)
+		VALUES
 		(#{title}, #{details},
 		#{finished})
 	</insert>
+
+	<update id="update" useGeneratedKeys="false" keyProperty="title">
+		UPDATE
+		todo
+		set
+		title = #{title}
+		,details = #{details}
+		, finished = #{finished}
+		,
+		version = version + 1
+		WHERE
+		title = #{title}
+		AND version = #{version}
+	</update>
 
 	<select id="select" resultMap="com.showka.MyBatisDemo.mapper.EntityMapper.todo">
 		SELECT *

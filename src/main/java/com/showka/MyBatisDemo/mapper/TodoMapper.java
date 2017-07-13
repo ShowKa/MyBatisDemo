@@ -10,4 +10,6 @@ public interface TodoMapper {
 	void insert(Todo todo);
 
 	Todo select(String title);
+
+	boolean update(Todo todo);
 }
