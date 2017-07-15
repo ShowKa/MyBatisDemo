@@ -7,10 +7,12 @@
 	<insert id="insert" useGeneratedKeys="false" keyProperty="title">
 		INSERT
 		INTO todo
-		(title, details, finished)
-		VALUES
-		(#{title}, #{details},
-		#{finished})
+		set
+		title = #{title}
+		,details = #{details}
+		, finished =
+		#{finished}
+		<include refid="Common.insertSet" />
 	</insert>
 
 	<update id="update" useGeneratedKeys="false" keyProperty="title">
@@ -19,15 +21,15 @@
 		set
 		title = #{title}
 		,details = #{details}
-		, finished = #{finished}
-		,
-		version = version + 1
+		, finished =
+		#{finished}
+		<include refid="Common.updateSet" />
 		WHERE
 		title = #{title}
-		AND version = #{version}
+		<include refid="Common.updateWhere" />
 	</update>
 
-	<select id="select" resultMap="com.showka.MyBatisDemo.mapper.EntityMapper.todo">
+	<select id="select" resultMap="Entity.todo">
 		SELECT *
 		FROM todo WHERE title =
 		#{title}

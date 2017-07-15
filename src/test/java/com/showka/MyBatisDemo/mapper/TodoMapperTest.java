@@ -20,7 +20,7 @@ public class TodoMapperTest extends TestCaseBase {
 		todoMapper.insert(newTodo);
 
 		newTodo.setDetails("銀座 20:00");
-		newTodo.setVersion(1);
+		newTodo.setVersion(0);
 		boolean updated = todoMapper.update(newTodo);
 		System.out.println(updated);
 

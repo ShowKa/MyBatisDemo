@@ -26,14 +26,14 @@ public abstract class AbstractEntity {
 	 * version
 	 */
 	@Version
-	@Column(name = "version", nullable = false, columnDefinition = "INTEGER DEFAULT 1")
-	private Integer version;
+	@Column(name = "version", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+	private Integer version = -1;
 
 	/**
 	 * create_user_id
 	 */
 	@Column(name = "create_user_id", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
-	private String create_user_id;
+	private String create_user_id = "default";
 
 	/**
 	 * create_timestamp
@@ -46,7 +46,7 @@ public abstract class AbstractEntity {
 	 * update_user_id
 	 */
 	@Column(name = "update_user_id", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
-	private String update_user_id;
+	private String update_user_id = "default";;
 
 	/**
 	 * update_timestamp
