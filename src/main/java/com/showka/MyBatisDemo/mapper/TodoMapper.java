@@ -5,11 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.showka.MyBatisDemo.entity.Todo;
 
 @Mapper
-public interface TodoMapper {
-
-	void insert(Todo todo);
+public interface TodoMapper extends IMapper<Todo> {
 
 	Todo select(String title);
 
-	boolean update(Todo todo);
 }
