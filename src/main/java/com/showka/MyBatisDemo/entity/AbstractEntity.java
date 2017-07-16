@@ -77,9 +77,9 @@ public abstract class AbstractEntity {
 	}
 
 	/**
-	 * 論理をやめてレコードを復活させる。
+	 * 論理削除をやめてレコードを復活させる。
 	 */
-	public void restore() {
+	public void restoreLogically() {
 		deleted = false;
 	}
 
