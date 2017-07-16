@@ -33,6 +33,7 @@
 		SELECT *
 		FROM todo WHERE title =
 		#{title}
+		<include refid="Common.select" />
 	</select>
 
 </mapper>

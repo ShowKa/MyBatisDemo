@@ -9,6 +9,7 @@
 		<result property="create_timestamp" column="create_timestamp" />
 		<result property="update_user_id" column="update_user_id" />
 		<result property="update_timestamp" column="update_timestamp" />
+		<result property="deleted" column="deleted" />
 		<result property="version" column="version" />
 	</resultMap>
 

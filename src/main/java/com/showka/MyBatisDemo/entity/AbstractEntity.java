@@ -18,8 +18,6 @@ import lombok.Setter;
  *
  */
 @MappedSuperclass
-@Getter
-@Setter
 public abstract class AbstractEntity {
 
 	/**
@@ -27,7 +25,16 @@ public abstract class AbstractEntity {
 	 */
 	@Version
 	@Column(name = "version", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
-	private Integer version = -1;
+	@Getter
+	@Setter
+	private Integer version = 0;
+
+	/**
+	 * 論理削除
+	 */
+	public void deleteLogically() {
+		deleted = true;
+	}
 
 	/**
 	 * create_user_id
@@ -56,11 +63,33 @@ public abstract class AbstractEntity {
 	private Date update_timestamp;
 
 	/**
+	 * update_timestamp
+	 */
+	@Column(name = "deleted", unique = false, nullable = false)
+	private boolean deleted = false;
+
+	/**
 	 * 文字列化
 	 */
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
+	}
+
+	/**
+	 * 論理をやめてレコードを復活させる。
+	 */
+	public void restore() {
+		deleted = false;
+	}
+
+	/**
+	 * 論理削除済みチェック
+	 * 
+	 * @return 削除済みならtrue
+	 */
+	public boolean isLogicallyDeleted() {
+		return deleted;
 	}
 
 }
