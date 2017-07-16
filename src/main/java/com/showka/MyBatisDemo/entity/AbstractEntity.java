@@ -92,4 +92,12 @@ public abstract class AbstractEntity {
 		return deleted;
 	}
 
+	protected void setCreateUserId(String userId) {
+		create_user_id = userId;
+	}
+
+	protected void setUpdateUserId(String userId) {
+		update_user_id = userId;
+	}
+
 }
