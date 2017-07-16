@@ -25,4 +25,12 @@ public class AsppectSetEntityColumnForTest {
 		entity.setUpdateUserId(USER);
 		return pjp.proceed();
 	}
+
+	@Around("execution(* com.showka.MyBatisDemo.mapper.*.deleteLogically(..))")
+	public Object aroundDeleteLogically(ProceedingJoinPoint pjp) throws Throwable {
+		AbstractEntity entity = (AbstractEntity) pjp.getArgs()[0];
+		entity.setUpdateUserId(USER);
+		entity.deleteLogically();
+		return pjp.proceed();
+	}
 }

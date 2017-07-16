@@ -12,16 +12,22 @@
 		current_timestamp(), update_user_id = #{update_user_id},
 		update_timestamp =
 		current_timestamp()
-		, deleted = #{deleted}
+		, deleted = false
 		, version =
 		0
 	</sql>
 
 	<sql id="updateSet">, update_user_id = #{update_user_id}, update_timestamp =
 		current_timestamp()
-		, deleted = #{deleted}
 		, version = version + 1
 	</sql>
 	<sql id="updateWhere"> AND version = #{version} </sql>
+
+	<sql id="deleteLogicallySet"> update_user_id = #{update_user_id}, update_timestamp =
+		current_timestamp()
+		, deleted = true
+		, version = version + 1
+	</sql>
+	<sql id="deleteLogicallyWhere"> AND version = #{version} </sql>
 
 </mapper>

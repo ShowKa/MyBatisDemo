@@ -27,4 +27,18 @@ public class TodoMapperTest extends TestCaseBase {
 		assertEquals(newTodo.getTitle(), result.getTitle());
 	}
 
+	@Test
+	public void test_02() {
+		Todo newTodo = new Todo();
+		newTodo.setTitle("友人との飲み会!");
+		newTodo.setDetails("銀座 19:00");
+		newTodo.setFinished(false);
+		todoMapper.insert(newTodo);
+		assertEquals(false, newTodo.isLogicallyDeleted());
+
+		boolean result = todoMapper.deleteLogically(newTodo);
+		assertEquals(true, result);
+		assertEquals(true, newTodo.isLogicallyDeleted());
+	}
+
 }

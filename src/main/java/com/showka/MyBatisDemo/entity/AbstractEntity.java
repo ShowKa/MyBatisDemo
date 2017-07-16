@@ -30,13 +30,6 @@ public abstract class AbstractEntity {
 	private Integer version = 0;
 
 	/**
-	 * 論理削除
-	 */
-	public void deleteLogically() {
-		deleted = true;
-	}
-
-	/**
 	 * create_user_id
 	 */
 	@Column(name = "create_user_id", unique = false, nullable = false, length = 255, columnDefinition = "VARCHAR DEFAULT 'default'")
@@ -77,13 +70,6 @@ public abstract class AbstractEntity {
 	}
 
 	/**
-	 * 論理削除をやめてレコードを復活させる。
-	 */
-	public void restoreLogically() {
-		deleted = false;
-	}
-
-	/**
 	 * 論理削除済みチェック
 	 * 
 	 * @return 削除済みならtrue
@@ -92,12 +78,36 @@ public abstract class AbstractEntity {
 		return deleted;
 	}
 
+	/**
+	 * 作成者設定
+	 * 
+	 * @param userId
+	 */
 	protected void setCreateUserId(String userId) {
 		create_user_id = userId;
 	}
 
+	/**
+	 * 更新者設定
+	 * 
+	 * @param userId
+	 */
 	protected void setUpdateUserId(String userId) {
 		update_user_id = userId;
+	}
+
+	/**
+	 * 論理削除する。
+	 */
+	protected void deleteLogically() {
+		deleted = true;
+	}
+
+	/**
+	 * 論理削除をやめてレコードを復活させる。
+	 */
+	protected void restoreLogically() {
+		deleted = false;
 	}
 
 }

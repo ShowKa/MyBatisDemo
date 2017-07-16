@@ -17,4 +17,11 @@ public interface IMapper<T extends AbstractEntity> {
 	 * @param entity
 	 */
 	boolean update(T entity);
+
+	/**
+	 * 論理削除
+	 * 
+	 * @param entity
+	 */
+	boolean deleteLogically(T entity);
 }

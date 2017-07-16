@@ -28,6 +28,16 @@
 		title = #{title}
 		<include refid="Common.updateWhere" />
 	</update>
+	
+	<update id="deleteLogically" useGeneratedKeys="false" keyProperty="title">
+		UPDATE
+		todo
+		set
+		<include refid="Common.deleteLogicallySet" />
+		WHERE
+		title = #{title}
+		<include refid="Common.deleteLogicallyWhere" />
+	</update>
 
 	<select id="select" resultMap="Entity.todo">
 		SELECT *
