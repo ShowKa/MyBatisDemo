@@ -28,8 +28,9 @@
 		title = #{title}
 		<include refid="Common.updateWhere" />
 	</update>
-	
-	<update id="deleteLogically" useGeneratedKeys="false" keyProperty="title">
+
+	<update id="deleteLogically" useGeneratedKeys="false"
+		keyProperty="title">
 		UPDATE
 		todo
 		set
@@ -38,6 +39,13 @@
 		title = #{title}
 		<include refid="Common.deleteLogicallyWhere" />
 	</update>
+
+	<delete id="deletePhysically">
+		DELETE
+		FROM todo WHERE title =
+		#{title}
+		<include refid="Common.deletePhysicallyWhere" />
+	</delete>
 
 	<select id="select" resultMap="Entity.todo">
 		SELECT *

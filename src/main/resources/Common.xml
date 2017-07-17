@@ -30,4 +30,6 @@
 	</sql>
 	<sql id="deleteLogicallyWhere"> AND version = #{version} </sql>
 
+	<sql id="deletePhysicallyWhere"> AND version = #{version} </sql>
+
 </mapper>

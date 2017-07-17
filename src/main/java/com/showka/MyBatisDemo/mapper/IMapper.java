@@ -9,7 +9,7 @@ public interface IMapper<T extends AbstractEntity> {
 	 * 
 	 * @param entity
 	 */
-	void insert(T todo);
+	void insert(T entity);
 
 	/**
 	 * update
@@ -24,4 +24,11 @@ public interface IMapper<T extends AbstractEntity> {
 	 * @param entity
 	 */
 	boolean deleteLogically(T entity);
+
+	/**
+	 * 物理削除
+	 * 
+	 * @param entity
+	 */
+	boolean deletePhysically(T entity);
 }
