@@ -18,7 +18,7 @@ import lombok.Setter;
  *
  */
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class EntityBase {
 
 	/**
 	 * version

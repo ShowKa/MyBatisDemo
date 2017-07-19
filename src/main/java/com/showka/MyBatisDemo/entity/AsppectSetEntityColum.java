@@ -19,7 +19,7 @@ public class AsppectSetEntityColum {
 
 	@Around("execution(* com.showka.MyBatisDemo.mapper.*.insert(..))")
 	public Object aroundInsert(ProceedingJoinPoint pjp) throws Throwable {
-		AbstractEntity entity = (AbstractEntity) pjp.getArgs()[0];
+		EntityBase entity = (EntityBase) pjp.getArgs()[0];
 		entity.setCreateUserId(getUserId());
 		entity.setUpdateUserId(getUserId());
 		return pjp.proceed();
@@ -27,14 +27,14 @@ public class AsppectSetEntityColum {
 
 	@Around("execution(* com.showka.MyBatisDemo.mapper.*.update(..))")
 	public Object aroundUpdate(ProceedingJoinPoint pjp) throws Throwable {
-		AbstractEntity entity = (AbstractEntity) pjp.getArgs()[0];
+		EntityBase entity = (EntityBase) pjp.getArgs()[0];
 		entity.setUpdateUserId(getUserId());
 		return pjp.proceed();
 	}
 
 	@Around("execution(* com.showka.MyBatisDemo.mapper.*.deleteLogically(..))")
 	public Object aroundDeleteLogically(ProceedingJoinPoint pjp) throws Throwable {
-		AbstractEntity entity = (AbstractEntity) pjp.getArgs()[0];
+		EntityBase entity = (EntityBase) pjp.getArgs()[0];
 		entity.setUpdateUserId(getUserId());
 		entity.deleteLogically();
 		return pjp.proceed();

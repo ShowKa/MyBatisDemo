@@ -1,8 +1,8 @@
 package com.showka.MyBatisDemo.mapper;
 
-import com.showka.MyBatisDemo.entity.AbstractEntity;
+import com.showka.MyBatisDemo.entity.EntityBase;
 
-public interface IMapper<T extends AbstractEntity> {
+public interface IMapper<T extends EntityBase> {
 
 	/**
 	 * insert

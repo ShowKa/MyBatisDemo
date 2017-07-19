@@ -12,7 +12,7 @@ import lombok.Setter;
 @Table(name = "todo")
 @Getter
 @Setter
-public class Todo extends AbstractEntity {
+public class Todo extends EntityBase {
 
 	@Id
 	@Column(name = "title", nullable = false, length = 255)
