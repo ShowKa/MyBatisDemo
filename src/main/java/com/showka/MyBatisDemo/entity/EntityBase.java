@@ -27,7 +27,7 @@ public abstract class EntityBase {
 	@Column(name = "version", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
 	@Getter
 	@Setter
-	private Integer version = 0;
+	private Integer version = -1;
 
 	/**
 	 * create_user_id

@@ -22,10 +22,12 @@ public class TodoMapperTest extends TestCaseBase {
 		newTodo.setDetails("銀座 19:00");
 		newTodo.setFinished(false);
 		todoMapper.insert(newTodo);
+		assertEquals(new Integer(0), newTodo.getVersion());
 
 		newTodo.setDetails("銀座 20:00");
 		newTodo.setVersion(0);
 		todoMapper.update(newTodo);
+		assertEquals(new Integer(1), newTodo.getVersion());
 
 		Todo result = todoMapper.select(newTodo.getTitle());
 		assertEquals(newTodo.getTitle(), result.getTitle());
@@ -44,6 +46,7 @@ public class TodoMapperTest extends TestCaseBase {
 		assertEquals(false, newTodo.isLogicallyDeleted());
 
 		boolean result = todoMapper.deleteLogically(newTodo);
+		assertEquals(new Integer(1), newTodo.getVersion());
 		assertEquals(true, result);
 		assertEquals(true, newTodo.isLogicallyDeleted());
 	}

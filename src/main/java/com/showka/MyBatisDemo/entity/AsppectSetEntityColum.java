@@ -22,6 +22,7 @@ public class AsppectSetEntityColum {
 		EntityBase entity = (EntityBase) pjp.getArgs()[0];
 		entity.setCreateUserId(getUserId());
 		entity.setUpdateUserId(getUserId());
+		entity.setVersion(0);
 		return pjp.proceed();
 	}
 
@@ -29,7 +30,9 @@ public class AsppectSetEntityColum {
 	public Object aroundUpdate(ProceedingJoinPoint pjp) throws Throwable {
 		EntityBase entity = (EntityBase) pjp.getArgs()[0];
 		entity.setUpdateUserId(getUserId());
-		return pjp.proceed();
+		Object ret = pjp.proceed();
+		entity.setVersion(entity.getVersion() + 1);
+		return ret;
 	}
 
 	@Around("execution(* com.showka.MyBatisDemo.mapper.*.deleteLogically(..))")
@@ -37,7 +40,9 @@ public class AsppectSetEntityColum {
 		EntityBase entity = (EntityBase) pjp.getArgs()[0];
 		entity.setUpdateUserId(getUserId());
 		entity.deleteLogically();
-		return pjp.proceed();
+		Object ret = pjp.proceed();
+		entity.setVersion(entity.getVersion() + 1);
+		return ret;
 	}
 
 	private String getUserId() {
