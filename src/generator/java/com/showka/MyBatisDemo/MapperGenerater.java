@@ -1,5 +1,10 @@
 package com.showka.MyBatisDemo;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.showka.MyBatisDemo.entity.MBusho;
+
+import freemarker.template.Configuration;
+import freemarker.template.TemplateException;
 
 public class MapperGenerater {
 
@@ -46,7 +54,32 @@ public class MapperGenerater {
 			}
 		}
 
+		// configuration
+		Configuration fileMarkerConfig = new Configuration(Configuration.VERSION_2_3_23);
+		fileMarkerConfig.setClassForTemplateLoading(MapperGenerater.class, "/");
+
+		try {
+
+			// template
+			freemarker.template.Template template = fileMarkerConfig.getTemplate(TEMPLATE_FILE);
+
+			// map
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("className", className);
+			map.put("tableName", tableName);
+			map.put("columns", columns);
+			map.put("keys", keys);
+
+			// write
+			File file = new File(DESTINATION + className + "Mapper.xml");
+			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+			template.process(map, writer);
+
+		} catch (IOException | TemplateException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Success!!");
+
 	}
 
 }
