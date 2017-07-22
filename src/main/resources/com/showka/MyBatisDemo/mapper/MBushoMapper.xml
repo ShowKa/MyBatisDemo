@@ -47,12 +47,12 @@
 		<include refid="Common.deletePhysicallyWhere" />
 	</delete>
 
-	<select id="select" resultMap="Entity.MBusho">
+	<select id="selectByPK" resultMap="Entity.MBusho">
 		SELECT *
 		FROM m_busho
 		WHERE
 		code = #{code}
-		<include refid="Common.select" />
+		<include refid="Common.selectWhere" />
 	</select>
 
 </mapper>

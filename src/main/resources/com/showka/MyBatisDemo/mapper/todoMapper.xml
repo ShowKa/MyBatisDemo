@@ -47,11 +47,11 @@
 		<include refid="Common.deletePhysicallyWhere" />
 	</delete>
 
-	<select id="select" resultMap="Entity.todo">
+	<select id="selectByPK" resultMap="Entity.todo">
 		SELECT *
 		FROM todo WHERE title =
 		#{title}
-		<include refid="Common.select" />
+		<include refid="Common.selectWhere" />
 	</select>
 
 </mapper>

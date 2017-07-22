@@ -29,7 +29,7 @@ public class TodoMapperTest extends TestCaseBase {
 		todoMapper.update(newTodo);
 		assertEquals(new Integer(1), newTodo.getVersion());
 
-		Todo result = todoMapper.select(newTodo.getTitle());
+		Todo result = todoMapper.selectByPK(newTodo.getTitle());
 		assertEquals(newTodo.getTitle(), result.getTitle());
 	}
 
@@ -64,7 +64,7 @@ public class TodoMapperTest extends TestCaseBase {
 
 		todoMapper.deletePhysically(newTodo);
 
-		Todo result = todoMapper.select(newTodo.getTitle());
+		Todo result = todoMapper.selectByPK(newTodo.getTitle());
 		assertNull(result);
 	}
 

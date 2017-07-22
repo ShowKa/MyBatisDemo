@@ -29,7 +29,7 @@ public class MBushoMapperTest extends TestCaseBase {
 		entity2.setVersion(0);
 		mapper.update(entity2);
 
-		MBusho result = mapper.select("01");
+		MBusho result = mapper.selectByPK("01");
 
 		assertEquals(new Integer(1), result.getVersion());
 		assertEquals("name02", result.getName());

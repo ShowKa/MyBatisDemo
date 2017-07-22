@@ -7,6 +7,6 @@ import com.showka.MyBatisDemo.entity.Todo;
 @Mapper
 public interface TodoMapper extends IMapper<Todo> {
 
-	Todo select(String title);
+	Todo selectByPK(String title);
 
 }

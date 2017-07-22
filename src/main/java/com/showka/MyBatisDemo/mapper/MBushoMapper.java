@@ -7,6 +7,6 @@ import com.showka.MyBatisDemo.entity.MBusho;
 @Mapper
 public interface MBushoMapper extends IMapper<MBusho> {
 
-	MBusho select(String code);
+	MBusho selectByPK(String code);
 
 }

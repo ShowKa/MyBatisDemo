@@ -71,7 +71,7 @@
 		<include refid="Common.deletePhysicallyWhere" />
 	</delete>
 
-	<select id="select" resultMap="Entity.${className}">
+	<select id="selectByPK" resultMap="Entity.${className}">
 		SELECT *
 		FROM ${tableName}
 		WHERE
@@ -82,7 +82,21 @@
 		, ${c.column} = ${r"#{"}${c.column}${r"}"}
 		</#if>
 	    </#list>
-		<include refid="Common.select" />
+		<include refid="Common.selectWhere" />
+	</select>
+	
+	<select id="selectDeletedByPK" resultMap="Entity.${className}">
+		SELECT *
+		FROM ${tableName}
+		WHERE
+		<#list keys as c>
+		<#if c_index = 0>
+		${c.column} = ${r"#{"}${c.column}${r"}"}
+		<#else>
+		, ${c.column} = ${r"#{"}${c.column}${r"}"}
+		</#if>
+	    </#list>
+		<include refid="Common.selectDeletedWhere" />
 	</select>
 
 </mapper>
