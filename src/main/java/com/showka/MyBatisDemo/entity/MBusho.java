@@ -29,10 +29,10 @@ public class MBusho extends EntityBase implements Serializable {
 	private String code;
 
 	@Column(name = "busho_kubun", nullable = false, length = 2)
-	private String bushoKubun;
+	private String busho_kubun;
 
 	@Column(name = "jigyo_kubun", nullable = false, length = 2)
-	private String jigyoKubun;
+	private String jigyo_kubun;
 
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;

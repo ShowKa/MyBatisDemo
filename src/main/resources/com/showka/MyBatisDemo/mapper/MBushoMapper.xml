@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.showka.MyBatisDemo.mapper.MBushoMapper">
+
+	<insert id="insert">
+		INSERT
+		INTO m_busho
+		set
+		code = #{code}
+		, busho_kubun = #{busho_kubun}
+		, jigyo_kubun = #{jigyo_kubun}
+		, name = #{name}
+		<include refid="Common.insertSet" />
+	</insert>
+
+	<update id="update">
+		UPDATE
+		m_busho
+		set
+		code = #{code}
+		, busho_kubun = #{busho_kubun}
+		, jigyo_kubun = #{jigyo_kubun}
+		, name = #{name}
+		<include refid="Common.updateSet" />
+		WHERE
+		code = #{code}
+		<include refid="Common.updateWhere" />
+	</update>
+
+	<update id="deleteLogically">
+		UPDATE
+		m_busho
+		set
+		<include refid="Common.deleteLogicallySet" />
+		WHERE
+		code = #{code}
+		<include refid="Common.deleteLogicallyWhere" />
+	</update>
+
+	<delete id="deletePhysically">
+		DELETE
+		FROM m_busho
+		WHERE
+		code = #{code}
+		<include refid="Common.deletePhysicallyWhere" />
+	</delete>
+
+	<select id="select" resultMap="Entity.MBusho">
+		SELECT *
+		FROM m_busho
+		WHERE
+		code = #{code}
+		<include refid="Common.select" />
+	</select>
+
+</mapper>

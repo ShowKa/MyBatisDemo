@@ -14,5 +14,6 @@
 	</resultMap>
 
 	<resultMap type="Todo" id="todo" extends="base" />
+	<resultMap type="MBusho" id="MBusho" extends="base" />
 
 </mapper>
