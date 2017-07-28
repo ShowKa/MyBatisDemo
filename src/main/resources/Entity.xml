@@ -15,5 +15,8 @@
 
 	<resultMap type="Todo" id="todo" extends="base" />
 	<resultMap type="MBusho" id="MBusho" extends="base" />
+	<resultMap type="MKokyaku" id="MKokyaku" extends="base" />
+	<resultMap type="MNyukinKakeInfo" id="MNyukinKakeInfo"
+		extends="base" />
 
 </mapper>

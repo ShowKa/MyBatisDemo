@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.showka.MyBatisDemo.mapper.MNyukinKakeInfoMapper">
+
+	<insert id="insert">
+		INSERT
+		INTO m_nyukin_kake_info
+		set
+		kokyaku_id = #{kokyaku_id}
+		, nyukin_hoho_kubun = #{nyukin_hoho_kubun}
+		, nyukin_tsuki_kubun = #{nyukin_tsuki_kubun}
+		, shimebi = #{shimebi}
+		, nyukin_date = #{nyukin_date}
+		<include refid="Common.insertSet" />
+	</insert>
+
+	<update id="update">
+		UPDATE
+		m_nyukin_kake_info
+		set
+		kokyaku_id = #{kokyaku_id}
+		, nyukin_hoho_kubun = #{nyukin_hoho_kubun}
+		, nyukin_tsuki_kubun = #{nyukin_tsuki_kubun}
+		, shimebi = #{shimebi}
+		, nyukin_date = #{nyukin_date}
+		<include refid="Common.updateSet" />
+		WHERE
+		kokyaku_id = #{kokyaku_id}
+		<include refid="Common.updateWhere" />
+	</update>
+
+	<update id="deleteLogically">
+		UPDATE
+		m_nyukin_kake_info
+		set
+		<include refid="Common.deleteLogicallySet" />
+		WHERE
+		kokyaku_id = #{kokyaku_id}
+		<include refid="Common.deleteLogicallyWhere" />
+	</update>
+
+	<delete id="deletePhysically">
+		DELETE
+		FROM m_nyukin_kake_info
+		WHERE
+		kokyaku_id = #{kokyaku_id}
+		<include refid="Common.deletePhysicallyWhere" />
+	</delete>
+
+	<select id="selectByPK" resultMap="Entity.MNyukinKakeInfo">
+		SELECT *
+		FROM m_nyukin_kake_info
+		WHERE
+		kokyaku_id = #{kokyaku_id}
+		<include refid="Common.selectWhere" />
+	</select>
+	
+	<select id="selectDeletedByPK" resultMap="Entity.MNyukinKakeInfo">
+		SELECT *
+		FROM m_nyukin_kake_info
+		WHERE
+		kokyaku_id = #{kokyaku_id}
+		<include refid="Common.selectDeletedWhere" />
+	</select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.showka.MyBatisDemo.u01.g001.search.U01G001KokyakuMapper">
+
+	<select id="search" resultMap="resultMap" parameterType="java.lang.String">
+		SELECT * FROM m_kokyaku kokyaku
+			INNER JOIN m_busho shukanBusho ON shukanBusho.code = kokyaku.shukan_busho_code
+			INNER JOIN m_nyukin_kake_info nyukinKakeInfo ON nyukinKakeInfo.kokyaku_id = kokyaku.code
+<!-- 		WHERE kokyaku.name like #{name} -->
+	</select>
+
+	<resultMap id="resultMap"
+		type="com.showka.MyBatisDemo.u01.g001.search.U01G001Kokyaku" extends="Entity.MKokyaku">
+		<!-- 主幹部署 -->
+		<association property="shukanBusho" columnPrefix="shukanBusho"
+			resultMap="Entity.MBusho" />
+		<!-- 入金掛情報 -->
+		<association property="nyukinKakeInfo" columnPrefix="nyukinKakeInfo"
+			resultMap="Entity.MNyukinKakeInfo" />
+	</resultMap>
+
+</mapper>
