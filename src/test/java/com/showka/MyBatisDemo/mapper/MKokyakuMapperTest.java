@@ -42,7 +42,7 @@ public class MKokyakuMapperTest extends MapperTestCaseBase {
 	@Test
 	public void testSelect() throws Exception {
 		MKokyaku actual = mapper.selectByPK("KK01");
-		System.out.println(actual);
+		assertEquals("顧客01", actual.getName());
 	}
 
 }
