@@ -14,9 +14,23 @@
 	</resultMap>
 
 	<resultMap type="Todo" id="todo" extends="base" />
-	<resultMap type="MBusho" id="MBusho" extends="base" />
-	<resultMap type="MKokyaku" id="MKokyaku" extends="base" />
 	<resultMap type="MNyukinKakeInfo" id="MNyukinKakeInfo"
 		extends="base" />
+
+	<resultMap type="MBusho" id="MBusho" extends="base">
+		<result property="code" column="code" />
+		<result property="bushoKubun" column="busho_kubun" />
+		<result property="jigyo_kubun" column="jigyo_kubun" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<resultMap type="MKokyaku" id="MKokyaku" extends="base">
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="address" column="address" />
+		<result property="kokyaku_kubun" column="kokyaku_kubun" />
+		<result property="hanbai_kubun" column="hanbai_kubun" />
+		<result property="shukan_busho_code" column="shukan_busho_code" />
+	</resultMap>
 
 </mapper>

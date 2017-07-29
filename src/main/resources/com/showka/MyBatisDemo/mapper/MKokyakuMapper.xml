@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.showka.MyBatisDemo.mapper.MKokyakuMapper">
+
+	<insert id="insert">
+		INSERT
+		INTO m_kokyaku
+		set
+		code = #{code}
+		, name = #{name}
+		, address = #{address}
+		, kokyaku_kubun = #{kokyaku_kubun}
+		, hanbai_kubun = #{hanbai_kubun}
+		<include refid="Common.insertSet" />
+	</insert>
+
+	<update id="update">
+		UPDATE
+		m_kokyaku
+		set
+		code = #{code}
+		, name = #{name}
+		, address = #{address}
+		, kokyaku_kubun = #{kokyaku_kubun}
+		, hanbai_kubun = #{hanbai_kubun}
+		<include refid="Common.updateSet" />
+		WHERE
+		code = #{code}
+		<include refid="Common.updateWhere" />
+	</update>
+
+	<update id="deleteLogically">
+		UPDATE
+		m_kokyaku
+		set
+		<include refid="Common.deleteLogicallySet" />
+		WHERE
+		code = #{code}
+		<include refid="Common.deleteLogicallyWhere" />
+	</update>
+
+	<delete id="deletePhysically">
+		DELETE
+		FROM m_kokyaku
+		WHERE
+		code = #{code}
+		<include refid="Common.deletePhysicallyWhere" />
+	</delete>
+
+	<select id="selectByPK" resultMap="Entity.MKokyaku">
+		SELECT *
+		FROM m_kokyaku
+		WHERE
+		code = #{code}
+		<include refid="Common.selectWhere" />
+	</select>
+	
+	<select id="selectDeletedByPK" resultMap="Entity.MKokyaku">
+		SELECT *
+		FROM m_kokyaku
+		WHERE
+		code = #{code}
+		<include refid="Common.selectDeletedWhere" />
+	</select>
+
+</mapper>

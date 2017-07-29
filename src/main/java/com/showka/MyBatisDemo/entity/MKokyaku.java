@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -36,13 +33,12 @@ public class MKokyaku extends EntityBase implements Serializable {
 	private String address;
 
 	@Column(name = "kokyaku_kubun", nullable = false, length = 2)
-	private String kokyakuKubun;
+	private String kokyaku_kubun;
 
 	@Column(name = "hanbai_kubun", nullable = false, length = 2)
-	private String hanbaiKubun;
+	private String hanbai_kubun;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "shukan_busho_code", referencedColumnName = "code")
-	private MBusho shukanBushoId;
+	@Column(name = "shukan_busho_code", nullable = false, length = 4)
+	private String shukan_busho_code;
 
 }
