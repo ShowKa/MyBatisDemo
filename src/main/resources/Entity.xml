@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Entity">
 
+	<!-- EntityBase -->
 	<resultMap type="EntityBase" id="base">
 		<result property="create_user_id" column="create_user_id" />
 		<result property="create_timestamp" column="create_timestamp" />
@@ -12,18 +13,36 @@
 		<result property="deleted" column="deleted" />
 		<result property="version" column="version" />
 	</resultMap>
+	<sql id="BaseColumns">
+		${alias}.create_user_id as ${alias}create_user_id,
+		${alias}.create_timestamp as ${alias}create_timestamp,
+		${alias}.update_user_id as ${alias}update_user_id,
+		${alias}.update_timestamp as ${alias}update_timestamp,
+		${alias}.deleted as ${alias}deleted,
+		${alias}.version as ${alias}version
+	</sql>
 
+	<!-- Todo -->
 	<resultMap type="Todo" id="todo" extends="base" />
-	<resultMap type="MNyukinKakeInfo" id="MNyukinKakeInfo"
-		extends="base" />
 
+	<!-- MBusho -->
 	<resultMap type="MBusho" id="MBusho" extends="base">
 		<result property="code" column="code" />
-		<result property="bushoKubun" column="busho_kubun" />
+		<result property="busho_kubun" column="busho_kubun" />
 		<result property="jigyo_kubun" column="jigyo_kubun" />
 		<result property="name" column="name" />
 	</resultMap>
+	<sql id="MBushoColumns">
+		${alias}.code as ${alias}code,
+		${alias}.busho_kubun as ${alias}busho_kubun,
+		${alias}.jigyo_kubun as ${alias}jigyo_kubun,
+		${alias}.name as ${alias}name,
+		<include refid="Entity.BaseColumns">
+			<property name="alias" value="${alias}" />
+		</include>
+	</sql>
 
+	<!-- MKokyaku -->
 	<resultMap type="MKokyaku" id="MKokyaku" extends="base">
 		<result property="code" column="code" />
 		<result property="name" column="name" />
@@ -32,5 +51,36 @@
 		<result property="hanbai_kubun" column="hanbai_kubun" />
 		<result property="shukan_busho_code" column="shukan_busho_code" />
 	</resultMap>
+	<sql id="MKokyakuColumns">
+		${alias}.code as ${alias}code,
+		${alias}.name as ${alias}name,
+		${alias}.address as ${alias}address,
+		${alias}.kokyaku_kubun as ${alias}kokyaku_kubun,
+		${alias}.hanbai_kubun as ${alias}hanbai_kubun,
+		${alias}.shukan_busho_code as ${alias}shukan_busho_code,
+		<include refid="Entity.BaseColumns">
+			<property name="alias" value="${alias}" />
+		</include>
+	</sql>
+	
+	<!-- MNyukinKakeInfo -->
+	<resultMap type="MNyukinKakeInfo" id="MNyukinKakeInfo"
+		extends="base">
+		<result property="kokyaku_code" column="kokyaku_code" />
+		<result property="nyukin_hoho_kubun" column="nyukin_hoho_kubun" />
+		<result property="nyukin_tsuki_kubun" column="nyukin_tsuki_kubun" />
+		<result property="shimebi" column="shimebi" />
+		<result property="nyukin_date" column="nyukin_date" />
+	</resultMap>
+	<sql id="MNyukinKakeInfoColumns">
+		${alias}.kokyaku_code as ${alias}kokyaku_code,
+		${alias}.nyukin_hoho_kubun as ${alias}nyukin_hoho_kubun,
+		${alias}.nyukin_tsuki_kubun as ${alias}nyukin_tsuki_kubun,
+		${alias}.shimebi as ${alias}shimebi,
+		${alias}.nyukin_date as ${alias}nyukin_date,
+		<include refid="Entity.BaseColumns">
+			<property name="alias" value="${alias}" />
+		</include>
+	</sql>
 
 </mapper>

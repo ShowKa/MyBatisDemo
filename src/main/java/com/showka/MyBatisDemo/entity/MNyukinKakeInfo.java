@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -25,19 +22,19 @@ public class MNyukinKakeInfo extends EntityBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "kokyaku_id", nullable = false, length = 4)
-	private String kokyakuId;
+	@Column(name = "kokyaku_code", nullable = false, length = 4)
+	private String kokyaku_code;
 
 	@Column(name = "nyukin_hoho_kubun", nullable = false, length = 2)
-	private String nyukinHohoKubun;
+	private String nyukin_hoho_kubun;
 
 	@Column(name = "nyukin_tsuki_kubun", nullable = false, length = 2)
-	private String nyukinTsukiKubun;
+	private String nyukin_tsuki_kubun;
 
 	@Column(name = "shimebi", nullable = false)
 	private int shimebi;
 
 	@Column(name = "nyukin_date", nullable = false)
-	private int nyukinDate;
+	private int nyukin_date;
 
 }
