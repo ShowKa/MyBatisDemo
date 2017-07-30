@@ -2,17 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.showka.MyBatisDemo.u01.g001.search.U01G001KokyakuMapper">
 
-	<select id="search" resultMap="resultMap" parameterType="com.showka.MyBatisDemo.u01.g001.search.U01G001KokyakuParam">
+	<select id="search" resultMap="resultMap">
 		SELECT
 		kokyaku.*
 		, <include refid="Entity.MBushoColumns"><property name="alias" value="shukanBusho" /></include>	
 		, <include refid="Entity.MNyukinKakeInfoColumns"><property name="alias" value="nyukinKakeInfo" /></include>	
 
-		FROM m_kokyaku kokyaku
-			INNER JOIN m_busho shukanBusho ON shukanBusho.code = kokyaku.shukan_busho_code
-			INNER JOIN m_nyukin_kake_info nyukinKakeInfo ON nyukinKakeInfo.kokyaku_code = kokyaku.code
+		FROM
+		m_kokyaku kokyaku
+		INNER JOIN m_busho shukanBusho ON shukanBusho.code = kokyaku.shukan_busho_code
+		INNER JOIN m_nyukin_kake_info nyukinKakeInfo ON nyukinKakeInfo.kokyaku_code = kokyaku.code
 
-<!-- 		WHERE kokyaku.name like #{name} -->
+		<include refid="Common.searchWhere"><property name="alias" value="kokyaku" /></include>	
+	
+		<if test="name != null">
+		AND kokyaku.name like #{name}
+		</if>
+	
+		<if test="shukanBushoName != null">
+		AND shukanBusho.name like #{shukanBushoName}
+		</if>
+
 	</select>
 
 	<resultMap id="resultMap" 

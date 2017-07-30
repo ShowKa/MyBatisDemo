@@ -31,4 +31,7 @@
 
 	<sql id="deletePhysicallyWhere"> AND version = #{version} </sql>
 
+	<sql id="searchWhere"> WHERE ${alias}.deleted = false </sql>
+	<sql id="searchDeletedWhere"> WHERE ${alias}.deleted = true </sql>
+
 </mapper>

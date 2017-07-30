@@ -13,7 +13,7 @@ import com.showka.MyBatisDemo.entity.MBusho;
 import com.showka.MyBatisDemo.entity.MKokyaku;
 import com.showka.MyBatisDemo.entity.MNyukinKakeInfo;
 
-public class U01G001KokyakuMapperTest extends MapperTestCaseBase {
+public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 
 	// m_busho
 	private static final String M_BUSHO = MBusho.class.getAnnotation(Table.class).name();
@@ -48,14 +48,12 @@ public class U01G001KokyakuMapperTest extends MapperTestCaseBase {
 	}
 
 	@Autowired
-	private U01G001KokyakuMapper mapper;
+	private U01G001KokyakuSearchRepositoryImpl repository;
 
 	@Test
-	public void search() {
-		List<U01G001Kokyaku> actual = mapper.search();
-		System.out.println(actual.size());
-		System.out.println(actual);
-		assertTrue(true);
+	public void search01() {
+		List<U01G001Kokyaku> actual = repository.search("01", "部署01");
+		assertEquals(1, actual.size());
 	}
 
 }
