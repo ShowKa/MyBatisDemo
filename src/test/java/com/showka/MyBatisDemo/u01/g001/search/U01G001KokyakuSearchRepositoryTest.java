@@ -52,8 +52,19 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 
 	@Test
 	public void search01() {
-		List<U01G001Kokyaku> actual = repository.search("01", "部署01");
+		List<U01G001Kokyaku> actual = repository.search("顧客", "部署");
+		assertEquals(2, actual.size());
+	}
+
+	@Test
+	public void search02() {
+		List<U01G001Kokyaku> actual = repository.search(null, "部署01");
 		assertEquals(1, actual.size());
 	}
 
+	@Test
+	public void search03() {
+		List<U01G001Kokyaku> actual = repository.search("顧客01", null);
+		assertEquals(1, actual.size());
+	}
 }
