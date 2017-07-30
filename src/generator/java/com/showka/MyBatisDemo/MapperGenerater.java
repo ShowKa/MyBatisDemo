@@ -77,6 +77,8 @@ public class MapperGenerater {
 
 		} catch (IOException | TemplateException e) {
 			e.printStackTrace();
+			System.out.println("Error!!");
+			return;
 		}
 		System.out.println("Success!!");
 
