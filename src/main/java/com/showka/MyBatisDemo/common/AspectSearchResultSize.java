@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
@@ -12,7 +13,11 @@ import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
 @Component
 public class AspectSearchResultSize {
 
-	private static final int max = 300000;
+	/**
+	 * システムが許容する検索結果の最大件数
+	 */
+	@Value("${framework.max_size_of_search_result}")
+	private int max;
 
 	/**
 	 * 検索結果の件数チェック
@@ -23,6 +28,7 @@ public class AspectSearchResultSize {
 	 */
 	@AfterReturning(pointcut = "execution(* com.showka.MyBatisDemo.common.SearchMapper+.*(..))", returning = "retVal")
 	public Object checkSearchResultSize(Object retVal) {
+
 		// get search result
 		List<?> result;
 		try {
@@ -33,6 +39,7 @@ public class AspectSearchResultSize {
 			e.printStackTrace();
 			return retVal;
 		}
+
 		// check size
 		if (result.size() > max) {
 			throw new TooMuchResultException();
