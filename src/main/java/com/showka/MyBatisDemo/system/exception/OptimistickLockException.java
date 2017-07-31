@@ -2,8 +2,8 @@ package com.showka.MyBatisDemo.system.exception;
 
 public class OptimistickLockException extends RuntimeException {
 
-	public OptimistickLockException(String message) {
-		super(message);
+	public OptimistickLockException() {
+		super("対象でデータは他のユーザーによってすでに更新されています。");
 	}
 
 	/**

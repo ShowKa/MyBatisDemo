@@ -31,7 +31,7 @@ public class AsppectOptimistickLock {
 	 */
 	private static void check(boolean result) {
 		if (!result) {
-			throw new OptimistickLockException("Optimistic Lock Error Occured!!!!");
+			throw new OptimistickLockException();
 		}
 	}
 }
