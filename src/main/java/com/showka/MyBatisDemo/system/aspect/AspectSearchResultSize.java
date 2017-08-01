@@ -1,4 +1,4 @@
-package com.showka.MyBatisDemo.common;
+package com.showka.MyBatisDemo.system.aspect;
 
 import java.util.List;
 

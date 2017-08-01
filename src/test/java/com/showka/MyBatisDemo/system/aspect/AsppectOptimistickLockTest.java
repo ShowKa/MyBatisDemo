@@ -1,8 +1,9 @@
-package com.showka.MyBatisDemo.common;
+package com.showka.MyBatisDemo.system.aspect;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.showka.MyBatisDemo.common.MapperTestCaseBase;
 import com.showka.MyBatisDemo.entity.Todo;
 import com.showka.MyBatisDemo.mapper.TodoMapper;
 import com.showka.MyBatisDemo.system.exception.OptimistickLockException;
