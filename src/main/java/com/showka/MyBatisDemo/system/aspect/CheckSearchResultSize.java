@@ -11,7 +11,7 @@ import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
 
 @Aspect
 @Component
-public class AspectSearchResultSize {
+public class CheckSearchResultSize {
 
 	/**
 	 * システムが許容する検索結果の最大件数

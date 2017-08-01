@@ -8,7 +8,7 @@ import com.showka.MyBatisDemo.entity.Todo;
 import com.showka.MyBatisDemo.mapper.TodoMapper;
 import com.showka.MyBatisDemo.system.exception.OptimistickLockException;
 
-public class AsppectOptimistickLockTest extends MapperTestCaseBase {
+public class OptimistickLockTest extends MapperTestCaseBase {
 
 	@Autowired
 	TodoMapper todoMapper;

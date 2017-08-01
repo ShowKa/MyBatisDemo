@@ -8,7 +8,7 @@ import com.showka.MyBatisDemo.system.exception.OptimistickLockException;
 
 @Aspect
 @Component
-public class AsppectOptimistickLock {
+public class OptimistickLock {
 
 	@AfterReturning(pointcut = "execution(* com.showka.MyBatisDemo.mapper.IMapper+.update(..))", returning = "retVal")
 	public void checkOptimisticLockErrorWhenUpdate(Object retVal) {
