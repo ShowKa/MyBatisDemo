@@ -1,7 +1,8 @@
 package com.showka.MyBatisDemo.system.aspect;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,8 @@ import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
 @Aspect
 @Component
 public class CheckSearchResultSize {
+
+	private Logger logger = Logger.getLogger(CheckSearchResultSize.class);
 
 	/**
 	 * システムが許容する検索結果の最大件数
@@ -27,16 +30,14 @@ public class CheckSearchResultSize {
 	 * @return 件数が許容範囲内であれば、そのまま呼び出しもとのメソッドに検索結果を返却する。
 	 */
 	@AfterReturning(pointcut = "execution(* com.showka.MyBatisDemo.common.SearchMapper+.*(..))", returning = "retVal")
-	public Object checkSearchResultSize(Object retVal) {
+	public Object checkSearchResultSizeForSearchMapper(Object retVal) {
 
 		// get search result
-		List<?> result;
+		Collection<?> result;
 		try {
-			result = (List<?>) retVal;
+			result = (Collection<?>) retVal;
 		} catch (RuntimeException e) {
-			System.out.println("検索結果の件数チェックが行なえませんでした。");
-			System.out.println("検索メソッドの返却値がjava.util.Listでない可能性があります。");
-			e.printStackTrace();
+			logger.warn("検索結果の件数チェックが行なえませんでした。検索メソッドの返却値がjava.util.Listでない可能性があります。", e);
 			return retVal;
 		}
 
