@@ -1,5 +1,7 @@
 package com.showka.MyBatisDemo.u01.g001.search;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,16 @@ public class U01G001KokyakuSearchRepositoryImpl implements U01G001KokyakuSearchR
 			param.putForPartialMatch("shukanBushoName", shukanBushoName);
 		}
 
-		return mapper.search(param);
+		List<U01G001Kokyaku> result = mapper.search(param);
+
+		// sort
+		// 1. 部署名昇順
+		// 2. 顧客名降順
+		Comparator<U01G001Kokyaku> c = Comparator.comparing((U01G001Kokyaku k) -> k.getShukanBusho().getName())
+				.thenComparing(k -> k.getName(), Comparator.nullsLast(Collections.reverseOrder()));
+		result.sort(c);
+
+		return result;
 	}
 
 }

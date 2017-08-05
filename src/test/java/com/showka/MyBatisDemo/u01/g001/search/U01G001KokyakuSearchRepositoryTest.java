@@ -27,6 +27,7 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 			"shukan_busho_code" };
 	private static final Object[] M_KOKYAKU_V01 = { "KK01", "顧客01", "左京区", "00", "00", "BS01" };
 	private static final Object[] M_KOKYAKU_V02 = { "KK02", "顧客02", "右京区", "10", "10", "BS02" };
+	private static final Object[] M_KOKYAKU_V03 = { "KK03", "顧客03", "中京区", "00", "10", "BS01" };
 
 	// m_nyukin_kake_info
 	private static final String M_NYUKIN_KAKE_INFO = MNyukinKakeInfo.class.getAnnotation(Table.class).name();
@@ -34,6 +35,7 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 			"shimebi", "nyukin_date" };
 	private static final Object[] M_NYUKIN_KAKE_INFO_V01 = { "KK01", "00", "00", 10, 30 };
 	private static final Object[] M_NYUKIN_KAKE_INFO_V02 = { "KK02", "10", "10", 10, 30 };
+	private static final Object[] M_NYUKIN_KAKE_INFO_V03 = { "KK03", "00", "10", 10, 30 };
 
 	/**
 	 * Before
@@ -42,8 +44,9 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 	@Before
 	public void before() {
 		super.deleteAll(M_BUSHO, M_KOKYAKU, M_NYUKIN_KAKE_INFO);
-		super.insert(M_KOKYAKU, M_KOKYAKU_C, M_KOKYAKU_V01, M_KOKYAKU_V02);
-		super.insert(M_NYUKIN_KAKE_INFO, M_NYUKIN_KAKE_INFO_C, M_NYUKIN_KAKE_INFO_V01, M_NYUKIN_KAKE_INFO_V02);
+		super.insert(M_KOKYAKU, M_KOKYAKU_C, M_KOKYAKU_V01, M_KOKYAKU_V02, M_KOKYAKU_V03);
+		super.insert(M_NYUKIN_KAKE_INFO, M_NYUKIN_KAKE_INFO_C, M_NYUKIN_KAKE_INFO_V01, M_NYUKIN_KAKE_INFO_V02,
+				M_NYUKIN_KAKE_INFO_V03);
 		super.insert(M_BUSHO, M_BUSHO_C, M_BUSHO_V01, M_BUSHO_V02);
 	}
 
@@ -53,13 +56,13 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 	@Test
 	public void search01() {
 		List<U01G001Kokyaku> actual = repository.search("顧客", "部署");
-		assertEquals(2, actual.size());
+		assertEquals(3, actual.size());
 	}
 
 	@Test
 	public void search02() {
 		List<U01G001Kokyaku> actual = repository.search(null, "部署01");
-		assertEquals(1, actual.size());
+		assertEquals(2, actual.size());
 	}
 
 	@Test
