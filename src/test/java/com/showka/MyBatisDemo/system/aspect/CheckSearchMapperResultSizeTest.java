@@ -18,7 +18,7 @@ import com.showka.MyBatisDemo.u01.g001.search.U01G001Kokyaku;
 import com.showka.MyBatisDemo.u01.g001.search.U01G001KokyakuSearchRepositoryImpl;
 
 @TestPropertySource(properties = { "framework.max_size_of_search_result = 1" })
-public class CheckSearchResultSizeTest extends MapperTestCaseBase {
+public class CheckSearchMapperResultSizeTest extends MapperTestCaseBase {
 
 	// m_busho
 	private static final String M_BUSHO = MBusho.class.getAnnotation(Table.class).name();

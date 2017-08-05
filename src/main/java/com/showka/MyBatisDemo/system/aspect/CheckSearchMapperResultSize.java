@@ -15,9 +15,9 @@ import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
 
 @Aspect
 @Component
-public class CheckSearchResultSize {
+public class CheckSearchMapperResultSize {
 
-	private Logger logger = Logger.getLogger(CheckSearchResultSize.class);
+	private Logger logger = Logger.getLogger(CheckSearchMapperResultSize.class);
 
 	/**
 	 * システムが許容する検索結果の最大件数
