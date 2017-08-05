@@ -17,7 +17,7 @@ import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
 import com.showka.MyBatisDemo.u01.g001.search.U01G001Kokyaku;
 import com.showka.MyBatisDemo.u01.g001.search.U01G001KokyakuSearchRepositoryImpl;
 
-@TestPropertySource(properties = { "framework.max_size_of_search_result = 1" })
+@TestPropertySource(properties = { "framework.max_size_of_system = 1" })
 public class CheckSearchMapperResultSizeTest extends MapperTestCaseBase {
 
 	// m_busho

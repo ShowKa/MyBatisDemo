@@ -19,7 +19,7 @@ public class CheckSearchMapperResultSize {
 	/**
 	 * システムが許容する検索結果の最大件数
 	 */
-	@Value("${framework.max_size_of_search_result}")
+	@Value("${framework.max_size_of_system}")
 	private int max;
 
 	/**
