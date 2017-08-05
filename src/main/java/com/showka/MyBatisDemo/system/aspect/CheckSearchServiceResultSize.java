@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.showka.MyBatisDemo.common.SearchService;
 import com.showka.MyBatisDemo.common.SearchType;
 import com.showka.MyBatisDemo.system.exception.TooMuchResultException;
 
@@ -27,11 +28,33 @@ public class CheckSearchServiceResultSize {
 	private int MAX_REPORT;
 
 	@Around("execution(public java.util.Collection+ com.showka.MyBatisDemo..*.*(..)) && args(..,searchType)")
-	public Object checkSearchResultSizeForSearchService(ProceedingJoinPoint pjp, SearchType searchType)
+	public Object checkSearchResultSize(ProceedingJoinPoint pjp, SearchType searchType) throws Throwable {
+		Object ret = pjp.proceed();
+		Collection<?> result = (Collection<?>) ret;
+		checkSize(result, searchType);
+		return ret;
+	}
+
+	@Around("execution(public java.util.Collection+ com.showka.MyBatisDemo..*.*(..)) && @annotation(searchService)")
+	public Object checkAnnotatedSearchResultSize(ProceedingJoinPoint pjp, SearchService searchService)
 			throws Throwable {
 		Object ret = pjp.proceed();
 		Collection<?> result = (Collection<?>) ret;
+		if (searchService.checkResultSize()) {
+			checkSize(result, searchService.searchType());
+		}
+		return ret;
+	}
 
+	/**
+	 * タイプ毎に件数チェック
+	 * 
+	 * @param result
+	 *            検索結果
+	 * @param searchType
+	 *            検索タイプ
+	 */
+	private void checkSize(Collection<?> result, SearchType searchType) throws TooMuchResultException {
 		switch (searchType) {
 		case SCREEN:
 			if (result.size() > MAX_SCREEN) {
@@ -44,6 +67,5 @@ public class CheckSearchServiceResultSize {
 			}
 			break;
 		}
-		return ret;
 	}
 }

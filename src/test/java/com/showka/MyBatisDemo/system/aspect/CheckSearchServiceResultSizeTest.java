@@ -20,6 +20,10 @@ import mockit.Tested;
 @TestPropertySource(properties = { "framework.max_size_of_screen = 5" })
 public class CheckSearchServiceResultSizeTest extends ServiceTestCaseBase {
 
+	// --------------
+	// まだ動かないよ！
+	// --------------
+
 	@Tested
 	private U01G001KokyakuSearchServiceImpl service;
 

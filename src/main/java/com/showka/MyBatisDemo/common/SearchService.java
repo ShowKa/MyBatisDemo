@@ -1,9 +1,24 @@
 package com.showka.MyBatisDemo.common;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.TYPE)
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface SearchService {
+	/**
+	 * 検索タイプ
+	 * 
+	 * @return
+	 */
+	SearchType searchType();
 
+	/**
+	 * 検索結果件数のチェックをするか否か
+	 * 
+	 * @return
+	 */
+	boolean checkResultSize() default true;
 }

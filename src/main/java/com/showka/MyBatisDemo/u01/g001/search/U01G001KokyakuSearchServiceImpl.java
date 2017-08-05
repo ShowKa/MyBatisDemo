@@ -13,10 +13,12 @@ import com.showka.MyBatisDemo.u01.g001.search.i.U01G001KokyakuSearchRepository;
 import com.showka.MyBatisDemo.u01.g001.search.i.U01G001KokyakuSearchService;
 
 @Service
-@SearchService
 @Transactional
 public class U01G001KokyakuSearchServiceImpl implements U01G001KokyakuSearchService {
 
+	/**
+	 * 検索リポジトリ
+	 */
 	@Autowired
 	private U01G001KokyakuSearchRepository repository;
 
@@ -25,8 +27,32 @@ public class U01G001KokyakuSearchServiceImpl implements U01G001KokyakuSearchServ
 	 */
 	@Override
 	public List<U01G001Kokyaku> search(String name, String shukanBushoName, SearchType type) {
-		List<U01G001Kokyaku> result = repository.search(name, shukanBushoName);
-		return result;
+		return justSearch(name, shukanBushoName);
 	}
 
+	/**
+	 * 顧客検索(画面)
+	 */
+	@Override
+	@SearchService(searchType = SearchType.SCREEN)
+	public List<U01G001Kokyaku> searchForScreen(String name, String shukanBushoName) {
+		return justSearch(name, shukanBushoName);
+	}
+
+	/**
+	 * 顧客検索(帳票)
+	 */
+	@Override
+	@SearchService(searchType = SearchType.REPORT)
+	public List<U01G001Kokyaku> searchForReport(String name, String shukanBushoName) {
+		return justSearch(name, shukanBushoName);
+	}
+
+	/**
+	 * 検索共通
+	 * 
+	 */
+	private List<U01G001Kokyaku> justSearch(String name, String shukanBushoName) {
+		return repository.search(name, shukanBushoName);
+	}
 }

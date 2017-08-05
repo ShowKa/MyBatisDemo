@@ -20,4 +20,28 @@ public interface U01G001KokyakuSearchService {
 	 */
 	public List<U01G001Kokyaku> search(String name, String shukanBushoName, SearchType type);
 
+	/**
+	 * 顧客検索(画面)
+	 * 
+	 * @param name
+	 *            顧客名
+	 * @param shukanBushoName
+	 *            主幹部署名
+	 * @return 顧客検索結果
+	 */
+	public List<U01G001Kokyaku> searchForScreen(String name, String shukanBushoName);
+
+	/**
+	 * 顧客検索(帳票)
+	 * 
+	 * @param name
+	 *            顧客名
+	 * @param shukanBushoName
+	 *            主幹部署名
+	 * @param type
+	 *            検索タイプ
+	 * @return 顧客検索結果
+	 */
+	public List<U01G001Kokyaku> searchForReport(String name, String shukanBushoName);
+
 }
