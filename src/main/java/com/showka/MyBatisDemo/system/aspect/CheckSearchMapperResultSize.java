@@ -32,6 +32,11 @@ public class CheckSearchMapperResultSize {
 	@AfterReturning(pointcut = "execution(* com.showka.MyBatisDemo.common.SearchMapper+.*(..))", returning = "retVal")
 	public Object checkSearchResultSizeForSearchMapper(Object retVal) {
 
+		// 1未満であれば何もしない
+		if (max < 1) {
+			return retVal;
+		}
+
 		// get search result
 		Collection<?> result;
 		try {

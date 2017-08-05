@@ -23,6 +23,7 @@
 		AND shukanBusho.name like #{shukanBushoName}
 		</if>
 
+		<include refid="Common.searchLimit" />
 	</select>
 
 	<resultMap id="resultMap" 
