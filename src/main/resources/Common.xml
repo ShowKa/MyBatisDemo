@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Common">
 
-	<sql id="selectWhere"> AND deleted = false </sql>
-	<sql id="selectDeletedWhere"> AND deleted = true </sql>
+	<sql id="selectCriteria"> AND deleted = false </sql>
+	<sql id="selectDeletedCriteria"> AND deleted = true </sql>
 
 	<sql id="insertSet">, create_user_id = #{create_user_id}, create_timestamp =
 		current_timestamp(), update_user_id = #{update_user_id},
@@ -20,16 +20,16 @@
 		current_timestamp()
 		, version = version + 1
 	</sql>
-	<sql id="updateWhere"> AND version = #{version} </sql>
+	<sql id="updateCriteria"> AND version = #{version} </sql>
 
 	<sql id="deleteLogicallySet"> update_user_id = #{update_user_id}, update_timestamp =
 		current_timestamp()
 		, deleted = true
 		, version = version + 1
 	</sql>
-	<sql id="deleteLogicallyWhere"> AND version = #{version} </sql>
+	<sql id="deleteLogicallyCriteria"> AND version = #{version} </sql>
 
-	<sql id="deletePhysicallyWhere"> AND version = #{version} </sql>
+	<sql id="deletePhysicallyCriteria"> AND version = #{version} </sql>
 
 	<sql id="searchWhere"> WHERE ${alias}.deleted = false </sql>
 	<sql id="searchDeletedWhere"> WHERE ${alias}.deleted = true </sql>

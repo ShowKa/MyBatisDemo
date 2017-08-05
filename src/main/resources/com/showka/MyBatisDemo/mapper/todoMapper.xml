@@ -26,7 +26,7 @@
 		<include refid="Common.updateSet" />
 		WHERE
 		title = #{title}
-		<include refid="Common.updateWhere" />
+		<include refid="Common.updateCriteria" />
 	</update>
 
 	<update id="deleteLogically" useGeneratedKeys="false"
@@ -37,21 +37,21 @@
 		<include refid="Common.deleteLogicallySet" />
 		WHERE
 		title = #{title}
-		<include refid="Common.deleteLogicallyWhere" />
+		<include refid="Common.deleteLogicallyCriteria" />
 	</update>
 
 	<delete id="deletePhysically">
 		DELETE
 		FROM todo WHERE title =
 		#{title}
-		<include refid="Common.deletePhysicallyWhere" />
+		<include refid="Common.deletePhysicallyCriteria" />
 	</delete>
 
 	<select id="selectByPK" resultMap="Entity.todo">
 		SELECT *
 		FROM todo WHERE title =
 		#{title}
-		<include refid="Common.selectWhere" />
+		<include refid="Common.selectCriteria" />
 	</select>
 
 </mapper>

@@ -134,5 +134,8 @@ public class SearchParam extends HashMap<String, String> {
 		if (value == null) {
 			throw new SystemException("検索パラメータにnullを設定してはいけません。");
 		}
+		if ("".equals(value)) {
+			throw new SystemException("検索パラメータに空文字を設定しては行けません。");
+		}
 	}
 }

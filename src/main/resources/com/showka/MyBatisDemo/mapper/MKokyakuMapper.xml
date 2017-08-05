@@ -28,7 +28,7 @@
 		<include refid="Common.updateSet" />
 		WHERE
 		code = #{code}
-		<include refid="Common.updateWhere" />
+		<include refid="Common.updateCriteria" />
 	</update>
 
 	<update id="deleteLogically">
@@ -38,7 +38,7 @@
 		<include refid="Common.deleteLogicallySet" />
 		WHERE
 		code = #{code}
-		<include refid="Common.deleteLogicallyWhere" />
+		<include refid="Common.deleteLogicallyCriteria" />
 	</update>
 
 	<delete id="deletePhysically">
@@ -46,7 +46,7 @@
 		FROM m_kokyaku
 		WHERE
 		code = #{code}
-		<include refid="Common.deletePhysicallyWhere" />
+		<include refid="Common.deletePhysicallyCriteria" />
 	</delete>
 
 	<select id="selectByPK" resultMap="Entity.MKokyaku">
@@ -54,7 +54,7 @@
 		FROM m_kokyaku
 		WHERE
 		code = #{code}
-		<include refid="Common.selectWhere" />
+		<include refid="Common.selectCriteria" />
 	</select>
 	
 	<select id="selectDeletedByPK" resultMap="Entity.MKokyaku">
@@ -62,7 +62,7 @@
 		FROM m_kokyaku
 		WHERE
 		code = #{code}
-		<include refid="Common.selectDeletedWhere" />
+		<include refid="Common.selectDeletedCriteria" />
 	</select>
 
 </mapper>

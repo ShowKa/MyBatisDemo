@@ -38,7 +38,7 @@
 		, ${c.column} = ${r"#{"}${c.column}${r"}"}
 		</#if>
 	    </#list>
-		<include refid="Common.updateWhere" />
+		<include refid="Common.updateCriteria" />
 	</update>
 
 	<update id="deleteLogically">
@@ -54,7 +54,7 @@
 		, ${c.column} = ${r"#{"}${c.column}${r"}"}
 		</#if>
 	    </#list>
-		<include refid="Common.deleteLogicallyWhere" />
+		<include refid="Common.deleteLogicallyCriteria" />
 	</update>
 
 	<delete id="deletePhysically">
@@ -68,7 +68,7 @@
 		, ${c.column} = ${r"#{"}${c.column}${r"}"}
 		</#if>
 	    </#list>
-		<include refid="Common.deletePhysicallyWhere" />
+		<include refid="Common.deletePhysicallyCriteria" />
 	</delete>
 
 	<select id="selectByPK" resultMap="Entity.${className}">
@@ -82,7 +82,7 @@
 		, ${c.column} = ${r"#{"}${c.column}${r"}"}
 		</#if>
 	    </#list>
-		<include refid="Common.selectWhere" />
+		<include refid="Common.selectCriteria" />
 	</select>
 	
 	<select id="selectDeletedByPK" resultMap="Entity.${className}">
@@ -96,7 +96,7 @@
 		, ${c.column} = ${r"#{"}${c.column}${r"}"}
 		</#if>
 	    </#list>
-		<include refid="Common.selectDeletedWhere" />
+		<include refid="Common.selectDeletedCriteria" />
 	</select>
 
 </mapper>
