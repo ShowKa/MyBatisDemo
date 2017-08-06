@@ -28,6 +28,9 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 	private static final Object[] M_KOKYAKU_V01 = { "KK01", "顧客01", "左京区", "00", "00", "BS01" };
 	private static final Object[] M_KOKYAKU_V02 = { "KK02", "顧客02", "右京区", "10", "10", "BS02" };
 	private static final Object[] M_KOKYAKU_V03 = { "KK03", "顧客03", "中京区", "00", "10", "BS01" };
+	private static final Object[] M_KOKYAKU_V04 = { "KK04", "顧客04", "中京区", "00", "10", "BS02" };
+	private static final Object[] M_KOKYAKU_V05 = { "KK05", "顧客05", "中京区", "00", "10", "BS01" };
+	private static final Object[] M_KOKYAKU_V06 = { "KK06", "顧客06", "中京区", "00", "10", "BS02" };
 
 	// m_nyukin_kake_info
 	private static final String M_NYUKIN_KAKE_INFO = MNyukinKakeInfo.class.getAnnotation(Table.class).name();
@@ -36,6 +39,9 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 	private static final Object[] M_NYUKIN_KAKE_INFO_V01 = { "KK01", "00", "00", 10, 30 };
 	private static final Object[] M_NYUKIN_KAKE_INFO_V02 = { "KK02", "10", "10", 10, 30 };
 	private static final Object[] M_NYUKIN_KAKE_INFO_V03 = { "KK03", "00", "10", 10, 30 };
+	private static final Object[] M_NYUKIN_KAKE_INFO_V04 = { "KK04", "00", "10", 10, 30 };
+	private static final Object[] M_NYUKIN_KAKE_INFO_V05 = { "KK05", "00", "10", 10, 30 };
+	private static final Object[] M_NYUKIN_KAKE_INFO_V06 = { "KK06", "00", "10", 10, 30 };
 
 	/**
 	 * Before
@@ -44,9 +50,10 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 	@Before
 	public void before() {
 		super.deleteAll(M_BUSHO, M_KOKYAKU, M_NYUKIN_KAKE_INFO);
-		super.insert(M_KOKYAKU, M_KOKYAKU_C, M_KOKYAKU_V01, M_KOKYAKU_V02, M_KOKYAKU_V03);
+		super.insert(M_KOKYAKU, M_KOKYAKU_C, M_KOKYAKU_V01, M_KOKYAKU_V02, M_KOKYAKU_V03, M_KOKYAKU_V04, M_KOKYAKU_V05,
+				M_KOKYAKU_V06);
 		super.insert(M_NYUKIN_KAKE_INFO, M_NYUKIN_KAKE_INFO_C, M_NYUKIN_KAKE_INFO_V01, M_NYUKIN_KAKE_INFO_V02,
-				M_NYUKIN_KAKE_INFO_V03);
+				M_NYUKIN_KAKE_INFO_V03, M_NYUKIN_KAKE_INFO_V04, M_NYUKIN_KAKE_INFO_V05, M_NYUKIN_KAKE_INFO_V06);
 		super.insert(M_BUSHO, M_BUSHO_C, M_BUSHO_V01, M_BUSHO_V02);
 	}
 
@@ -56,18 +63,36 @@ public class U01G001KokyakuSearchRepositoryTest extends MapperTestCaseBase {
 	@Test
 	public void search01() {
 		List<U01G001Kokyaku> actual = repository.search("顧客", "部署");
-		assertEquals(3, actual.size());
+		assertEquals(6, actual.size());
 	}
 
 	@Test
 	public void search02() {
 		List<U01G001Kokyaku> actual = repository.search(null, "部署01");
-		assertEquals(2, actual.size());
+		assertEquals(3, actual.size());
 	}
 
 	@Test
 	public void search03() {
 		List<U01G001Kokyaku> actual = repository.search("顧客01", null);
 		assertEquals(1, actual.size());
+	}
+
+	/**
+	 * ソートテスト
+	 */
+	@Test
+	public void search04_sort() {
+		List<U01G001Kokyaku> actual = repository.search("顧客", "部署");
+		// ソート1: 部署名
+		assertEquals("部署01", actual.get(0).getShukanBusho().getName());
+		assertEquals("部署01", actual.get(1).getShukanBusho().getName());
+		assertEquals("部署02", actual.get(actual.size() - 2).getShukanBusho().getName());
+		assertEquals("部署02", actual.get(actual.size() - 1).getShukanBusho().getName());
+		// ソート2: 顧客名降順
+		assertEquals("顧客05", actual.get(0).getName());
+		assertEquals("顧客03", actual.get(1).getName());
+		assertEquals("顧客04", actual.get(actual.size() - 2).getName());
+		assertEquals("顧客02", actual.get(actual.size() - 1).getName());
 	}
 }
