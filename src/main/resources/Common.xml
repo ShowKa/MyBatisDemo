@@ -35,9 +35,14 @@
 	<sql id="searchDeletedWhere"> WHERE ${alias}.deleted = true </sql>
 
 	<sql id="searchLimit">
-		<if test="${system_limit} > 0">
-			LIMIT (${system_limit} + 1)
-		</if>
+		<choose>
+			<when test="#{limit} != null and limit > 0">
+				LIMIT ${limit}
+			</when>
+			<when test="${system_limit} > 0">
+				LIMIT (${system_limit} + 1)
+			</when>
+		</choose>
 	</sql>
 
 </mapper>
