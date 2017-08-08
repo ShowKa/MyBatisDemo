@@ -14,7 +14,12 @@
 		INNER JOIN m_nyukin_kake_info nyukinKakeInfo ON nyukinKakeInfo.kokyaku_code = kokyaku.code
 
 		<include refid="Common.searchWhere"><property name="alias" value="kokyaku" /></include>	
-	
+
+		AND kokyaku.kokyaku_kubun IN (
+			<include refid="Common.kubunCode"><property name="kubun" value="KokyakuKubun@法人" /></include>
+			, <include refid="Common.kubunCode"><property name="kubun" value="KokyakuKubun@個人" /></include>
+		)
+
 		<if test="name != null">
 		AND kokyaku.name like #{name}
 		</if>
