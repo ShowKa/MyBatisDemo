@@ -21,9 +21,7 @@ public abstract class DomainBase {
 	 * 
 	 * @return 空オブジェクトならtrue
 	 */
-	public boolean isEmpty() {
-		return false;
-	}
+	abstract public boolean isEmpty();
 
 	/**
 	 * ドメイン整合性検証
