@@ -1,5 +1,6 @@
 package com.showka.MyBatisDemo.domain;
 
+import com.showka.MyBatisDemo.kubun.HanbaiKubun;
 import com.showka.MyBatisDemo.kubun.KokyakuKubun;
 import com.showka.MyBatisDemo.system.EmptyProxy;
 import com.showka.MyBatisDemo.system.exception.SystemException;
@@ -26,6 +27,9 @@ public class KokyakuDomain extends DomainBase {
 	/** 顧客区分 */
 	private KokyakuKubun kokyakuKubun = KokyakuKubun.EMPTY;
 
+	/** 販売区分 */
+	private HanbaiKubun hanbaiKubun = HanbaiKubun.EMPTY;
+
 	/** 顧客名 */
 	private String name = STRING_EMPTY;
 
@@ -34,6 +38,9 @@ public class KokyakuDomain extends DomainBase {
 
 	/** 主幹部署 */
 	private BushoDomain shukanBushoDomain = BushoDomain.EMPTY;
+
+	/** バージョン */
+	private Integer version = INTEGER_EMPTY;
 
 	// public method
 	/**
