@@ -2,6 +2,7 @@ package com.showka.MyBatisDemo.domain;
 
 import com.showka.MyBatisDemo.kubun.BushoKubun;
 import com.showka.MyBatisDemo.kubun.JigyoKubun;
+import com.showka.MyBatisDemo.system.EmptyProxy;
 import com.showka.MyBatisDemo.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
@@ -63,7 +64,7 @@ public class BushoDomain extends DomainBase {
 
 	@Override
 	public boolean isEmpty() {
-		return this instanceof EmptyBushoDomain;
+		return this == EMPTY;
 	}
 
 	@Override
@@ -82,16 +83,6 @@ public class BushoDomain extends DomainBase {
 	}
 
 	// Empty
-	public static final EmptyBushoDomain EMPTY = EmptyBushoDomain.INSTANCE;
+	public static final BushoDomain EMPTY = EmptyProxy.domain(BushoDomain.class);
 
-}
-
-/**
- * Empty
- * 
- * @author ShowKa
- *
- */
-class EmptyBushoDomain extends BushoDomain {
-	public static final EmptyBushoDomain INSTANCE = new EmptyBushoDomain();
 }

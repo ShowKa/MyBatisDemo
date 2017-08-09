@@ -1,6 +1,7 @@
 package com.showka.MyBatisDemo.domain;
 
 import com.showka.MyBatisDemo.kubun.KokyakuKubun;
+import com.showka.MyBatisDemo.system.EmptyProxy;
 import com.showka.MyBatisDemo.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
@@ -64,7 +65,7 @@ public class KokyakuDomain extends DomainBase {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return this instanceof EmptyKokyakuDomain;
+		return this == EMPTY;
 	}
 
 	/**
@@ -86,16 +87,6 @@ public class KokyakuDomain extends DomainBase {
 	}
 
 	// Empty
-	public static final KokyakuDomain EMPTY = EmptyKokyakuDomain.INSTANCE;
+	public static final KokyakuDomain EMPTY = EmptyProxy.domain(KokyakuDomain.class);
 
-}
-
-/**
- * Empty
- * 
- * @author ShowKa
- *
- */
-class EmptyKokyakuDomain extends KokyakuDomain {
-	public static final KokyakuDomain INSTANCE = new EmptyKokyakuDomain();
 }
