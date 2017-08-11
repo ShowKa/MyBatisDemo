@@ -50,4 +50,12 @@ public interface Repository<T extends EntityBase, D extends DomainBase> {
 	 * @return Domain
 	 */
 	public T createEntityFromDomain(D domain);
+
+	/**
+	 * 悲観的排他制御
+	 * 
+	 * @param entityBase
+	 * @return
+	 */
+	public void selectForUpdate(T entity);
 }
