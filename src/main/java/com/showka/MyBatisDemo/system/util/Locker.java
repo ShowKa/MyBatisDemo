@@ -24,25 +24,30 @@ public class Locker {
 	@Autowired
 	private ApplicationContext context;
 
+	@SuppressWarnings("unchecked")
 	public void lock(DomainBase... domains) {
 
-		List<UpdateEntity> entityList = new ArrayList<UpdateEntity>();
+		List<UpdateEntity<EntityBase>> entityList = new ArrayList<UpdateEntity<EntityBase>>();
 
 		for (DomainBase d : domains) {
 			DomainForUpdate dfu = d.getClass().getAnnotation(DomainForUpdate.class);
 			if (dfu != null) {
-				Class<? extends Repository> repositoryClass = dfu.repository();
+
+				Class<Repository<EntityBase, DomainBase>> repositoryClass = (Class<Repository<EntityBase, DomainBase>>) dfu
+						.repository();
+
 				Repository<? extends EntityBase, DomainBase> repository = context.getBean(repositoryClass);
 				EntityBase e = repository.createEntityFromDomain(d);
-				entityList.add(new UpdateEntity(repository, e));
+				entityList.add(new UpdateEntity<EntityBase>((Repository<EntityBase, DomainBase>) repository, e));
 			}
 		}
 
-		Comparator<UpdateEntity> c = Comparator.comparing((UpdateEntity e) -> e.getClass().getName())
+		Comparator<UpdateEntity<EntityBase>> c = Comparator
+				.comparing((UpdateEntity<EntityBase> e) -> e.getClass().getName())
 				.thenComparing((e1, e2) -> new EntityComparator().compare(e1.getEntity(), e2.getEntity()));
 		entityList.sort(c);
 
-		for (UpdateEntity ue : entityList) {
+		for (UpdateEntity<EntityBase> ue : entityList) {
 			ue.getRepository().selectForUpdate(ue.getEntity());
 		}
 	}
