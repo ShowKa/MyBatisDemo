@@ -78,4 +78,9 @@ public class KokyakuRepositoryImpl implements KokyakuRepository {
 		return d;
 	}
 
+	@Override
+	public void selectForUpdate(MKokyaku entity) {
+		// TODO Auto-generated method stub
+	}
+
 }
