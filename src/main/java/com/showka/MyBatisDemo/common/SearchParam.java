@@ -13,7 +13,7 @@ import lombok.Getter;
  *
  */
 @Getter
-public class SearchParam extends HashMap<String, String> {
+public class SearchParam extends HashMap<String, Object> {
 
 	/**
 	 * 検索タイプ
@@ -75,10 +75,16 @@ public class SearchParam extends HashMap<String, String> {
 	/**
 	 * パラメータ設定
 	 */
-	@Override
-	public String put(String key, String value) {
+	public void put(String key, String value) {
 		checkValueStrictly(value);
-		return super.put(key, value);
+		super.put(key, value);
+	}
+
+	/**
+	 * パラメータ設定
+	 */
+	public void put(String key, Boolean value) {
+		super.put(key, value);
 	}
 
 	/**
@@ -90,9 +96,9 @@ public class SearchParam extends HashMap<String, String> {
 	 *            パラメータの値
 	 * @return %value%
 	 */
-	public String putForPartialMatch(String key, String value) {
+	public void putForPartialMatch(String key, String value) {
 		checkValueStrictly(value);
-		return put(key, anyPatter + value + anyPatter);
+		put(key, anyPatter + value + anyPatter);
 	}
 
 	/**
@@ -104,9 +110,9 @@ public class SearchParam extends HashMap<String, String> {
 	 *            パラメータの値
 	 * @return value%
 	 */
-	public String putForPrefixMatch(String key, String value) {
+	public void putForPrefixMatch(String key, String value) {
 		checkValueStrictly(value);
-		return put(key, value + anyPatter);
+		put(key, value + anyPatter);
 	}
 
 	/**
@@ -118,9 +124,9 @@ public class SearchParam extends HashMap<String, String> {
 	 *            パラメータの値
 	 * @return %value
 	 */
-	public String putForBackwardMatch(String key, String value) {
+	public void putForBackwardMatch(String key, String value) {
 		checkValueStrictly(value);
-		return put(key, anyPatter + value);
+		put(key, anyPatter + value);
 	}
 
 	/**
